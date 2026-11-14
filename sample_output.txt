@@ -1,0 +1,12 @@
+Student Added Successfully
+
+SAP ID : 590042095
+Name : Kaushal Kumar
+Roll No : R001
+
+CGPA : 8.50
+
+Academic Advisor:
+
+Good Performance
+Keep improving consistency and maintain regular study habits.
