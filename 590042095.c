@@ -74,3 +74,74 @@ void displayAll()
         printf("Semester : %d\n", students[i].semester);
     }
 }
+
+float calculateCGPA(int index)
+{
+    float sum = 0;
+    int countSem = 0;
+
+    for(int i = 0; i < 8; i++)
+    {
+        if(students[index].sgpa[i] > 0)
+        {
+            sum += students[index].sgpa[i];
+            countSem++;
+        }
+    }
+
+    if(countSem == 0)
+        return 0;
+
+    return sum / countSem;
+}
+
+void searchStudent()
+{
+    long sap;
+    printf("\nEnter SAP ID to Search: ");
+    scanf("%ld", &sap);
+
+    for(int i = 0; i < count; i++)
+    {
+        if(students[i].sapid == sap)
+        {
+            printf("\nRecord Found\n");
+            printf("Name : %s\n", students[i].name);
+            printf("Roll No : %s\n", students[i].roll);
+            printf("CGPA : %.2f\n", calculateCGPA(i));
+            return;
+        }
+    }
+
+    printf("\nStudent Not Found\n");
+}
+
+void academicAdvisor()
+{
+    long sap;
+    printf("\nEnter SAP ID: ");
+    scanf("%ld", &sap);
+
+    for(int i = 0; i < count; i++)
+    {
+        if(students[i].sapid == sap)
+        {
+            float cgpa = calculateCGPA(i);
+
+            printf("\nCGPA = %.2f\n", cgpa);
+
+            if(cgpa >= 9)
+                printf("Excellent Performance - Maintain your current study pattern.\n");
+            else if(cgpa >= 8)
+                printf("Good Performance - Keep improving consistency.\n");
+            else if(cgpa >= 6)
+                printf("Needs Improvement - Focus on weak subjects.\n");
+            else
+                printf("Requires Immediate Attention - Improve study habits.\n");
+
+            return;
+        }
+    }
+
+    printf("Student Not Found\n");
+}
