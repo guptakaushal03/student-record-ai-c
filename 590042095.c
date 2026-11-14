@@ -145,3 +145,26 @@ void academicAdvisor()
 
     printf("Student Not Found\n");
 }
+void deleteStudent()
+{
+    long sap;
+    printf("Enter SAP ID to delete: ");
+    scanf("%ld", &sap);
+
+    for(int i = 0; i < count; i++)
+    {
+        if(students[i].sapid == sap)
+        {
+            for(int j = i; j < count - 1; j++)
+            {
+                students[j] = students[j + 1];
+            }
+
+            count--;
+            printf("Student Deleted Successfully\n");
+            return;
+        }
+    }
+
+    printf("Student Not Found\n");
+}
