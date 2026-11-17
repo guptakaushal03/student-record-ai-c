@@ -218,19 +218,22 @@ void sortByName()
 void academicAdvisor()
 {
     long sap;
-
     printf("Enter SAP ID: ");
     scanf("%ld", &sap);
-
     for(int i = 0; i < count; i++)
     {
         if(students[i].sapid == sap)
         {
             float cgpa = calculateCGPA(i);
-
             printf("\nCGPA = %.2f\n", cgpa);
 
+            // Attempt to open in tests folder. If it fails, fallback to root folder.
             FILE *out = fopen("tests/sample_output.txt", "a");
+            if(out == NULL)
+            {
+                out = fopen("sample_output.txt", "a");
+            }
+            
             FILE *log = fopen("AI_USAGE_LOG.md", "a");
 
             if(out != NULL)
@@ -241,28 +244,25 @@ void academicAdvisor()
             if(cgpa >= 9.0)
             {
                 printf("Excellent Performance - Maintain your current study pattern.\n");
-
                 if(out != NULL)
                     fprintf(out, "Excellent Performance - Maintain your current study pattern.\n");
             }
             else if(cgpa >= 8.0)
             {
-                printf("Good Performance - Keep improving consistency.\n");
-
+                // Updated text string to perfectly sync with your GitHub output
+                printf("Good Performance - Keep improving consistency and maintain regular study habits.\n");
                 if(out != NULL)
-                    fprintf(out, "Good Performance - Keep improving consistency.\n");
+                    fprintf(out, "Good Performance - Keep improving consistency and maintain regular study habits.\n");
             }
             else if(cgpa >= 6.0)
             {
                 printf("Needs Improvement - Focus on weak subjects.\n");
-
                 if(out != NULL)
                     fprintf(out, "Needs Improvement - Focus on weak subjects.\n");
             }
             else
             {
                 printf("Requires Immediate Attention - Improve study habits.\n");
-
                 if(out != NULL)
                     fprintf(out, "Requires Immediate Attention - Improve study habits.\n");
             }
@@ -277,14 +277,11 @@ void academicAdvisor()
 
             if(out != NULL)
                 fclose(out);
-
             if(log != NULL)
                 fclose(log);
-
             return;
         }
     }
-
     printf("Student Not Found\n");
 }
 
