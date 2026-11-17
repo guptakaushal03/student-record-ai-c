@@ -230,14 +230,56 @@ void academicAdvisor()
 
             printf("\nCGPA = %.2f\n", cgpa);
 
+            FILE *out = fopen("tests/sample_output.txt", "a");
+            FILE *log = fopen("AI_USAGE_LOG.md", "a");
+
+            if(out != NULL)
+            {
+                fprintf(out, "\nCGPA = %.2f\n", cgpa);
+            }
+
             if(cgpa >= 9.0)
+            {
                 printf("Excellent Performance - Maintain your current study pattern.\n");
+
+                if(out != NULL)
+                    fprintf(out, "Excellent Performance - Maintain your current study pattern.\n");
+            }
             else if(cgpa >= 8.0)
+            {
                 printf("Good Performance - Keep improving consistency.\n");
+
+                if(out != NULL)
+                    fprintf(out, "Good Performance - Keep improving consistency.\n");
+            }
             else if(cgpa >= 6.0)
+            {
                 printf("Needs Improvement - Focus on weak subjects.\n");
+
+                if(out != NULL)
+                    fprintf(out, "Needs Improvement - Focus on weak subjects.\n");
+            }
             else
+            {
                 printf("Requires Immediate Attention - Improve study habits.\n");
+
+                if(out != NULL)
+                    fprintf(out, "Requires Immediate Attention - Improve study habits.\n");
+            }
+
+            if(log != NULL)
+            {
+                fprintf(log,
+                "\nAI Tool: ChatGPT\n"
+                "Prompt Asked: Suggest simple CGPA-based academic advice.\n"
+                "How I Used the Response: Used AI-generated advice categories in the Academic Advisor feature.\n");
+            }
+
+            if(out != NULL)
+                fclose(out);
+
+            if(log != NULL)
+                fclose(log);
 
             return;
         }
