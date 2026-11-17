@@ -1,5 +1,3 @@
-Student Added Successfully
-
 Case 1:
 CGPA : 9.20
 
